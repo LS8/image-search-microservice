@@ -1,0 +1,11 @@
+{
+  "name": "image-search-layer",
+  "version": "0.1.0",
+  "description": "Searches google images",
+  "main": "/app/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "LS8",
+  "license": "MIT"
+}
