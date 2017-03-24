@@ -2,8 +2,8 @@ const config = require('./config.js');
 
 const got = require('got');
 
-function imageQuery(searchQuery) {
-  const entryUrl = 'https://www.googleapis.com/customsearch/v1?q=soccer&searchType=image&cx=' + config.id + '&key=' + config.apiKey;
+module.exports = function imageQuery(searchQuery, offset = 1) {
+  const entryUrl = `https://www.googleapis.com/customsearch/v1?q=${searchQuery}&searchType=image&start=${offset}&cx=${config.id}&key=${config.apiKey}`;
   return got(entryUrl)
     .then(response => {
       var images = JSON.parse(response.body).items;
@@ -13,8 +13,4 @@ function imageQuery(searchQuery) {
       console.log(err);
       return err;
     });
-}
-
-module.exports = {
-  imageQuery
-}
+};
