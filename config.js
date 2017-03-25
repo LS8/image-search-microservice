@@ -1,7 +1,7 @@
 const config = {
   port: 3000,
-  id: '012708087707299883548:rfasmotcxlc',
-  apiKey: 'AIzaSyBS-dhgFCdnZ-0srZhaFBiiV2xi9LySfWs',
+  id: process.env.GOOGLE_ID,
+  apiKey: process.env.GOOGLE_API_KEY,
   db: {
     host: 'localhost',
     port: 27017,
