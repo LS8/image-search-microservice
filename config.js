@@ -6,8 +6,10 @@ let config = {
     host: 'localhost',
     port: 27017,
     name: 'search_history',
-    // adress: process.env.MONGOLAB_URI
+    address: process.env.MONGOLAB_URI
   }
 };
-config.db.address = `${config.db.host}:${config.db.port}/${config.db.name}`;
+if (!config.db.address) {
+  config.db.address = `${config.db.host}:${config.db.port}/${config.db.name}`;
+}
 module.exports = config;
