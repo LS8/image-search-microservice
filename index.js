@@ -12,8 +12,8 @@ app.use(express.static(path.join(__dirname, 'static')));
 // set up routes
 app.use('/search', search);
 app.use('/history', history);
-// app.all('*', function(req, res) {
-//   res.redirect("localhost:3000/search");
-// });
+app.all('*', function(req, res) {
+  res.redirect('/');
+});
 
 app.listen(config.port);

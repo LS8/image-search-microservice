@@ -1,5 +1,5 @@
 let config = {
-  port: 3000,
+  port: process.env.PORT || 8080,
   id: process.env.GOOGLE_ID,
   apiKey: process.env.GOOGLE_API_KEY,
   db: {
