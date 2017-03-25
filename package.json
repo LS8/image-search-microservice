@@ -11,5 +11,7 @@
   "dependencies": {
     "express": "^4.15.2",
     "got": "^6.7.1",
+    "mongodb": "^2.2.25",
+    "monk": "^4.0.0"
   }
 }

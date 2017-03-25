@@ -2,13 +2,18 @@ const express = require('express');
 
 const url = require('url');
 
-const app = express();
+const config = require('./config.js');
 
 const imageQuery = require('./image-query.js');
 
 const beautify = require('./beautify.js');
 
-const serverUrl = '//localhost:3000';
+const dbAdress = `${config.db.host}:${config.db.port}/${config.db.name}`;
+const app = express();
+
+const db = require('monk')(dbAdress);
+
+const history = db.get('history');
 
 app.get('/search', (req, res) => {
   const parsedUrl = url.parse(req.url, true);
@@ -21,7 +26,11 @@ app.get('/search', (req, res) => {
     .catch(function(err) {
       res.send(beautify(err, null));
     });
+  // store search somewhere
+  const date = new Date()
+  history.insert({ searchTerm: search, when: date.toUTCString() });
 });
+// add '/history' route that shows recent searches
 app.all('*', function(req, res) {
   res.redirect("localhost:3000/search");
 });

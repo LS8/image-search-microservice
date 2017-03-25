@@ -1,4 +1,4 @@
-module.exports = function(err, images) {
+module.exports = function beautify(err, images) {
   if (err) {
     return (`Sorry, there was an unexpected Error: ${err}`);
   }
