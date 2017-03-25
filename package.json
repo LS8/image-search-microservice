@@ -4,8 +4,12 @@
   "description": "Searches google images",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha tests/",
     "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LS8/image-search-microservice"
   },
   "author": "LS8",
   "license": "MIT",
