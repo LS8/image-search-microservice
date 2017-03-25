@@ -30,7 +30,11 @@ app.get('/search', (req, res) => {
   const date = new Date()
   history.insert({ searchTerm: search, when: date.toUTCString() });
 });
-// add '/history' route that shows recent searches
+app.get('/history', (req, res) => {
+  history.find({}, { fields: { _id: 0 }, limit: 10, sort: { _id: -1}}).then(doc => {
+    res.send(doc);
+  });
+});
 app.all('*', function(req, res) {
   res.redirect("localhost:3000/search");
 });
