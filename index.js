@@ -1,7 +1,6 @@
 const express = require('express');
 const config = require('./config.js');
 const path = require('path');
-const dbAdress = `${config.db.host}:${config.db.port}/${config.db.name}`;
 const app = express();
 const search = require('./routes/search');
 const history = require('./routes/history');

@@ -1,6 +1,6 @@
 const config = require('../config.js');
-const dbAdress = `${config.db.host}:${config.db.port}/${config.db.name}`;
-const db = require('monk')(dbAdress);
+const dbAddress = config.db.address;
+const db = require('monk')(dbAddress);
 const history = db.get('history');
 
 module.exports = (req, res) => {
