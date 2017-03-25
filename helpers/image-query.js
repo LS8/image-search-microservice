@@ -1,5 +1,4 @@
-const config = require('./config.js');
-
+const config = require('../config.js');
 const got = require('got');
 
 module.exports = function imageQuery(searchQuery, offset = 1) {

@@ -1,24 +1,18 @@
-const express = require('express');
-
 const url = require('url');
-
-const config = require('./config.js');
-
-const imageQuery = require('./image-query.js');
-
-const beautify = require('./beautify.js');
-
+const config = require('../config.js');
 const dbAdress = `${config.db.host}:${config.db.port}/${config.db.name}`;
-const app = express();
-
 const db = require('monk')(dbAdress);
-
 const history = db.get('history');
+const imageQuery = require('../helpers/image-query.js');
+const beautify = require('../helpers/beautify.js');
 
-app.get('/search', (req, res) => {
+module.exports = (req, res) => {
   const parsedUrl = url.parse(req.url, true);
   const search = parsedUrl.query.q;
   const offset = parsedUrl.query.offset;
+  if (!search) {
+    res.send('Please enter something to search for');
+  }
   imageQuery(search, offset)
     .then(function(value) {
       res.send(beautify(null, value));
@@ -26,17 +20,7 @@ app.get('/search', (req, res) => {
     .catch(function(err) {
       res.send(beautify(err, null));
     });
-  // store search somewhere
+  // store search
   const date = new Date()
   history.insert({ searchTerm: search, when: date.toUTCString() });
-});
-app.get('/history', (req, res) => {
-  history.find({}, { fields: { _id: 0 }, limit: 10, sort: { _id: -1}}).then(doc => {
-    res.send(doc);
-  });
-});
-app.all('*', function(req, res) {
-  res.redirect("localhost:3000/search");
-});
-
-app.listen(3000);
+};
