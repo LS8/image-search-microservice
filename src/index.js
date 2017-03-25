@@ -6,6 +6,8 @@ const app = express();
 
 const imageQuery = require('./image-query.js');
 
+const beautify = require('./beautify.js');
+
 const serverUrl = '//localhost:3000';
 
 app.get('/search', (req, res) => {
@@ -14,12 +16,10 @@ app.get('/search', (req, res) => {
   const offset = parsedUrl.query.offset;
   imageQuery(search, offset)
     .then(function(value) {
-      // create module for handling value
-      // displaying only the required contents
-      res.send(value);
+      res.send(beautify(null, value));
     })
     .catch(function(err) {
-      res.send(err);
+      res.send(beautify(err, null));
     });
 });
 app.all('*', function(req, res) {
