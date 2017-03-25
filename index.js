@@ -8,7 +8,6 @@ const history = require('./routes/history');
 // set up static
 app.use(express.static(path.join(__dirname, 'static')));
 
-
 // set up routes
 app.use('/search', search);
 app.use('/history', history);
