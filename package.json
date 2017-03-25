@@ -2,7 +2,7 @@
   "name": "image-search-layer",
   "version": "0.1.0",
   "description": "Searches google images",
-  "main": "/app/index.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
