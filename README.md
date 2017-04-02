@@ -9,7 +9,7 @@
 ## Routes
 
 **/search?q=lolcats&offset=10**
-Returns a JSON object including url, snippet, thumbnail, context
+Returns a JSON object including url, alt-text and context
 
 &offset=x paginates the results
 
