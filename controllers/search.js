@@ -9,7 +9,7 @@ const beautify = require('../helpers/beautify.js');
 module.exports = (req, res) => {
   const parsedUrl = url.parse(req.url, true);
   const search = parsedUrl.query.q;
-  const offset = parsedUrl.query.offset || 1;
+  const offset = Number(parsedUrl.query.offset) || 1;
   if (!search) {
     res.send('Please enter something to search for');
   } else {
